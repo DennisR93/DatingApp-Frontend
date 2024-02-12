@@ -10,11 +10,11 @@ export class AppComponent implements OnInit {
   title = 'Dating App';
   users!: any;
   API_USERS: string = "https://localhost:5001/api/users";
-  constructor(private htttp: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
-    this.htttp.get(this.API_USERS).subscribe({
+    this.http.get(this.API_USERS).subscribe({
       next: response => this.users = response,
       error: err => console.log(err),
       complete: () => console.log("Finished")
