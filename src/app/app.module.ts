@@ -19,7 +19,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BrowserAnimationsModule,
     BsDropdownModule.forRoot()
   ],
   providers: [],
