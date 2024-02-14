@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs";
+import {UserModel} from "../models/usermodel";
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  login(model:any){
-    return this.http.post(this.baseUrl + 'account/login', model).pipe(
-      map((response: any) => {
+  login(model:UserModel){
+    return this.http.post<UserModel>(this.baseUrl + 'account/login', model).pipe(
+      map((response: UserModel) => {
         const user = response;
         if(user){
           localStorage.setItem('user', JSON.stringify(user))
