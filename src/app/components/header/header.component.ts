@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {AccountService} from "../../services/account.service";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'app-header',
@@ -7,10 +9,20 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 model: any = {};
+loggedIn:boolean = false;
 
-constructor() {}
+constructor(private accountService: AccountService) {}
 
   login(){
-    console.log(this.model);
+    this.accountService.login(this.model).subscribe({
+      next: response => {
+        console.log(response);
+        this.loggedIn = true;
+      },
+      error: error => {
+        console.log(error);
+        this.loggedIn = false;
+      }
+    })
   }
 }
