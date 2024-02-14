@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+model: any = {};
 
+constructor() {}
+
+  login(){
+    console.log(this.model);
+  }
 }
