@@ -21,7 +21,7 @@ export class AccountService {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);
         }
-        return user;
+        return user; //Can be removed if we won't need to see the data in console log!
       })
     );
   }
