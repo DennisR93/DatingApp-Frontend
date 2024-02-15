@@ -8,12 +8,14 @@ import { HeaderComponent } from './components/header/header.component';
 import {FormsModule} from "@angular/forms";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './components/home/home.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
