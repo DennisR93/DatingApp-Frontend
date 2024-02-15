@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  registerMode:boolean = false;
 
+  constructor() {}
+
+  registerToggle() {
+    this.registerMode = !this.registerMode;
+  }
 }
