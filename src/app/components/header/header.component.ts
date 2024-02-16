@@ -3,6 +3,7 @@ import {AccountService} from "../../services/account.service";
 import {Observable, of} from "rxjs";
 import {UserModel} from "../../models/usermodel";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ model: any = {};
 /*loggedIn:boolean = false;*/
   // currentUser$ :Observable<UserModel | null> = of(null);
 
-constructor(protected accountService: AccountService, private router: Router) {}
+constructor(protected accountService: AccountService, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit() {
 /*  this.getCurrentUser();*/
@@ -30,6 +31,7 @@ constructor(protected accountService: AccountService, private router: Router) {}
       },
       error: error => {
         console.log(error);
+        this.toastr.error(error.error);
         // this.loggedIn = false;
       }
     })
