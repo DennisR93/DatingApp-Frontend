@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../services/account.service";
 import {Observable, of} from "rxjs";
 import {UserModel} from "../../models/usermodel";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ model: any = {};
 /*loggedIn:boolean = false;*/
   // currentUser$ :Observable<UserModel | null> = of(null);
 
-constructor(protected accountService: AccountService) {}
+constructor(protected accountService: AccountService, private router: Router) {}
 
   ngOnInit() {
 /*  this.getCurrentUser();*/
@@ -24,10 +25,12 @@ constructor(protected accountService: AccountService) {}
     this.accountService.login(this.model).subscribe({
       next: response => {
         console.log(response);
+        this.router.navigateByUrl('/members');
         // this.loggedIn = true;
       },
       error: error => {
         console.log(error);
+        this.router.navigateByUrl('/');
         // this.loggedIn = false;
       }
     })
