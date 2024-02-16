@@ -30,7 +30,6 @@ constructor(protected accountService: AccountService, private router: Router) {}
       },
       error: error => {
         console.log(error);
-        this.router.navigateByUrl('/');
         // this.loggedIn = false;
       }
     })
@@ -38,6 +37,7 @@ constructor(protected accountService: AccountService, private router: Router) {}
 
   logout(){
   this.accountService.logout();
+  this.router.navigateByUrl('/');
   // this.loggedIn = false;
   }
 
