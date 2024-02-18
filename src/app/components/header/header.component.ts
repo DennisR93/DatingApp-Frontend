@@ -24,16 +24,7 @@ constructor(protected accountService: AccountService, private router: Router, pr
 
   login(){
     this.accountService.login(this.model).subscribe({
-      next: response => {
-        console.log(response);
-        this.router.navigateByUrl('/members');
-        // this.loggedIn = true;
-      },
-      error: error => {
-        console.log(error);
-        this.toastr.error(error.error);
-        // this.loggedIn = false;
-      }
+      next: () => this.router.navigateByUrl('/members')// this.loggedIn = true;
     })
   }
 
