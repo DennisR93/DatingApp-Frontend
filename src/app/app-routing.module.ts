@@ -6,6 +6,7 @@ import {MemberDetailComponent} from "./components/members/member-detail/member-d
 import {ListsComponent} from "./components/lists/lists.component";
 import {MessagesComponent} from "./components/messages/messages.component";
 import {authGuard} from "./guards/auth.guard";
+import {TestErrorComponent} from "./components/errors/test-error/test-error.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -16,11 +17,11 @@ const routes: Routes = [
       {path: 'members', component: MemberListComponent},
       {path: 'members/:id', component: MemberDetailComponent},
       {path: 'lists', component: ListsComponent},
-      {path: 'messages', component: MessagesComponent},
-      {path: '**', component: HomeComponent, pathMatch: 'full'}
+      {path: 'messages', component: MessagesComponent}
     ]
-  }
-
+  },
+  {path: 'errors', component: TestErrorComponent},
+  {path: '**', component: HomeComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
