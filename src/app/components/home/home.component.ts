@@ -8,29 +8,29 @@ import {HttpClient} from "@angular/common/http";
 })
 export class HomeComponent implements OnInit{
   registerMode:boolean = false;
-  API_USERS: string = "https://localhost:5001/api/users";
-  users: any;
+  // API_USERS: string = "https://localhost:5001/api/users";
+  // users: any;
 
   constructor(private http:HttpClient) {}
 
   ngOnInit() {
-    this.getUsers();
+    // this.getUsers();
   }
 
   registerToggle() {
     this.registerMode = !this.registerMode;
   }
 
-  getUsers(){
-    this.http.get(this.API_USERS).subscribe({
-      next: response => {
-        this.users = response;
-        console.log(response);
-      },
-      error: err => console.log(err),
-      complete: () => console.log("Finished")
-    });
-  }
+  // getUsers(){
+  //   this.http.get(this.API_USERS).subscribe({
+  //     next: response => {
+  //       this.users = response;
+  //       console.log(response);
+  //     },
+  //     error: err => console.log(err),
+  //     complete: () => console.log("Finished")
+  //   });
+  // }
 
   cancelRegisterMode(event:boolean){
     this.registerMode = event;
