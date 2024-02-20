@@ -17,6 +17,7 @@ import { TestErrorComponent } from './components/errors/test-error/test-error.co
 import {ErrorInterceptor} from "./interceptors/error.interceptor";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ServerErrorComponent } from './components/server-error/server-error.component';
+import { MemberCardComponent } from './components/members/member-card/member-card.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ServerErrorComponent } from './components/server-error/server-error.com
     MessagesComponent,
     TestErrorComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    MemberCardComponent
   ],
   imports: [
     BrowserModule,
