@@ -27,7 +27,6 @@ import {JwtInterceptor} from "./interceptors/jwt.interceptor";
     HomeComponent,
     RegisterFormComponent,
     MemberListComponent,
-    MemberDetailComponent,
     ListsComponent,
     MessagesComponent,
     TestErrorComponent,
@@ -41,7 +40,8 @@ import {JwtInterceptor} from "./interceptors/jwt.interceptor";
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    MemberDetailComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
