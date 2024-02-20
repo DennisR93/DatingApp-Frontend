@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {MemberModel} from "../../../models/membermodel";
 
 @Component({
   selector: 'app-member-card',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './member-card.component.css'
 })
 export class MemberCardComponent {
+  @Input() member: MemberModel | undefined;
 
 }
