@@ -16,7 +16,8 @@ import {TabsModule} from "ngx-bootstrap/tabs";
   ],
   exports:[
     BsDropdownModule,
-    ToastrModule
+    ToastrModule,
+    TabsModule
   ]
 })
 export class SharedModule { }
