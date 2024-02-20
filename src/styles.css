@@ -22,7 +22,7 @@
 }
 
 .member-tabset > .nav-tabs > li.open .dropdown-menu, .member-tabset > .nav-tabs > li:hover .dropdown-menu {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .member-tabset > .nav-tabs > li.active {
