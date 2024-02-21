@@ -36,4 +36,8 @@ members: MemberModel[] = [];
       })
     );
   }
+
+  setMainPhoto(photoId: number){
+    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
+  }
 }
