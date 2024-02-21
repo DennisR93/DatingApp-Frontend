@@ -29,6 +29,11 @@ members: MemberModel[] = [];
   }
 
   updateMember(member: MemberModel){
-    return this.http.put(this.baseUrl + 'users', member);
+    return this.http.put(this.baseUrl + 'users', member).pipe(
+      map(() => {
+        const index = this.members.indexOf(member);
+        this.members[index] = {...this.members[index], ...member};
+      })
+    );
   }
 }
