@@ -14,7 +14,7 @@ import {take} from "rxjs";
 export class PhotoEditorComponent implements OnInit{
 @Input() member: MemberModel | undefined;
 uploader: FileUploader | undefined;
-hasBaseDropzoneOver = false;
+hasBaseDropZoneOver = false;
 baseUrl = environment.apiUrl;
 user: UserModel | undefined;
 
@@ -31,12 +31,12 @@ ngOnInit(){
 }
 
 fileOverBase(e: any){
-  this.hasBaseDropzoneOver = e;
+  this.hasBaseDropZoneOver = e;
 }
 
 initializeUploader(){
   this.uploader = new FileUploader({
-    url: this.baseUrl + 'user/add-photo',
+    url: this.baseUrl + 'users/add-photo',
     authToken: "Bearer " + this.user?.token,
     isHTML5: true,
     allowedFileType: ['image'],
