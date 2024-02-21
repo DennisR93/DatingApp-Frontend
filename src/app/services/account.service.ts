@@ -14,13 +14,23 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
+  register(model:any){
+    return this.http.post<UserModel>(this.baseUrl + 'account/register', model).pipe(
+      map(user => {
+        if(user){
+          this.setCurrentUser(user);
+        }
+        return user;
+      })
+    )
+  }
+
   login(model:UserModel){
     return this.http.post<UserModel>(this.baseUrl + 'account/login', model).pipe(
       map((response: UserModel) => {
         const user = response;
         if(user){
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          this.setCurrentUser(user);
         }
         return user; //Can be removed if we won't need to see the data in console log!
       })
@@ -33,18 +43,8 @@ export class AccountService {
   }
 
   setCurrentUser(user: UserModel){
+    localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
   }
 
-  register(model:any){
-    return this.http.post<UserModel>(this.baseUrl + 'account/register', model).pipe(
-      map(user => {
-        if(user){
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
-        }
-        return user;
-      })
-    )
-  }
 }
