@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {MemberModel} from "../../../models/membermodel";
 
 @Component({
   selector: 'app-photo-editor',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './photo-editor.component.css'
 })
 export class PhotoEditorComponent {
+@Input() member: MemberModel | undefined;
+
+constructor() {}
+
 
 }
