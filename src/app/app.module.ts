@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { HeaderComponent } from './components/header/header.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './components/home/home.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { MemberListComponent } from './components/members/member-list/member-list.component';
@@ -46,7 +46,8 @@ import { PhotoEditorComponent } from './components/members/photo-editor/photo-ed
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
-    MemberDetailComponent
+    MemberDetailComponent,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
