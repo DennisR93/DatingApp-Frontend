@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {MemberModel} from "../models/membermodel";
 import {map, of} from "rxjs";
 import {PaginatedResult} from "../models/pagination";
-import {UserParams} from "../models/user-params";
+import {UserParams} from "../models/userParams";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,7 @@ members: MemberModel[] = [];
     params = params.append('minAge', userParams.minAge);
     params = params.append('maxAge', userParams.maxAge);
     params = params.append('gender', userParams.gender);
+    params = params.append('orderBy', userParams.orderBy);
 
     return this.getPaginatedResult<MemberModel[]>(this.baseUrl + 'users', params);
   }
