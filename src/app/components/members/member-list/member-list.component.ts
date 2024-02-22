@@ -3,7 +3,7 @@ import {MemberModel} from "../../../models/membermodel";
 import {MembersService} from "../../../services/members.service";
 import {Observable, take} from "rxjs";
 import {Pagination} from "../../../models/pagination";
-import {UserParams} from "../../../models/user-params";
+import {UserParams} from "../../../models/userParams";
 import {UserModel} from "../../../models/usermodel";
 import {AccountService} from "../../../services/account.service";
 
