@@ -109,4 +109,12 @@ userParams: UserParams | undefined;
   deletePhoto(photoId: number){
     return this.http.delete(this.baseUrl + 'users/delete/photo/' + photoId);
   }
+
+  addLike(username: string){
+    return this.http.post(this.baseUrl + 'likes/' + username, {});
+  }
+
+  getLikes(predicate: string){
+    return this.http.get<MemberModel[]>(this.baseUrl + 'likes?predicate=' + predicate);
+  }
 }
