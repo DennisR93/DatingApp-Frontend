@@ -59,7 +59,7 @@ memberCache:Map<any,any> = new Map();
   }
 
   getMember(username: string){
-    const member= this.members.find(u => u.userName === username);
+    const member = [...this.memberCache.values()].reduce((arr, element) => arr.concat(element.result), []).find((member:MemberModel) => member.userName === username);
     if(member) return of(member);
     return this.http.get<MemberModel>(this.baseUrl + 'users/' + username);
   }
