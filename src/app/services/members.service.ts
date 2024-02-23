@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment.development";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {MemberModel} from "../models/membermodel";
-import {map, of} from "rxjs";
+import {map, of, take} from "rxjs";
 import {PaginatedResult} from "../models/pagination";
 import {UserParams} from "../models/userParams";
+import {AccountService} from "./account.service";
+import {UserModel} from "../models/usermodel";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,35 @@ import {UserParams} from "../models/userParams";
 export class MembersService {
 baseUrl:string = environment.apiUrl;
 members: MemberModel[] = [];
-memberCache:Map<any,any> = new Map();
-  constructor(private http: HttpClient) { }
+memberCache: Map<any,any> = new Map();
+user: UserModel |undefined;
+userParams: UserParams | undefined;
+  constructor(private http: HttpClient, private accountService: AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe({
+      next: user => {
+        if(user){
+          this.userParams = new UserParams(user);
+          this.user = user;
+        }
+      }
+    })
+  }
+
+  getUserParams(){
+    return this.userParams;
+  }
+
+  setUserParams(params: UserParams){
+    this.userParams = params;
+  }
+
+  resetUserParams(){
+    if(this.user){
+      this.userParams = new UserParams(this.user);
+      return this.userParams;
+    }
+    return;
+  }
 
   getMembers(userParams: UserParams){
     const response = this.memberCache.get(Object.values(userParams).join('-'));
