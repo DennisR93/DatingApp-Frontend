@@ -1,14 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Message} from "../../../models/message";
 import {MessageService} from "../../../services/message.service";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
+import {TimeagoModule} from "ngx-timeago";
 
 @Component({
   selector: 'app-member-messages',
   templateUrl: './member-messages.component.html',
   styleUrl: './member-messages.component.css',
   imports: [
-    NgForOf
+    TimeagoModule,
+    NgForOf,
+    NgIf
   ],
   standalone: true
 })
