@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {DatePipe, NgIf} from "@angular/common";
 import {SharedModule} from "../../../modules/shared.module";
 import {GalleryItem, GalleryModule, ImageItem} from "ng-gallery";
+import {MemberMessagesComponent} from "../member-messages/member-messages.component";
 
 @Component({
   selector: 'app-member-detail',
@@ -14,7 +15,8 @@ import {GalleryItem, GalleryModule, ImageItem} from "ng-gallery";
     DatePipe,
     NgIf,
     SharedModule,
-    GalleryModule
+    GalleryModule,
+    MemberMessagesComponent
   ],
   standalone: true
 })
