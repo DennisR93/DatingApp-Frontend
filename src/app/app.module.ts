@@ -25,6 +25,7 @@ import { PhotoEditorComponent } from './components/members/photo-editor/photo-ed
 import { TextInputComponent } from './components/forms/text-input/text-input.component';
 import { DatePickerComponent } from './components/forms/date-picker/date-picker.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './directives/has-role.directive';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
     PhotoEditorComponent,
     TextInputComponent,
     DatePickerComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,
