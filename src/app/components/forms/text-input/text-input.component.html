@@ -6,7 +6,7 @@
          placeholder="{{label}}">
 
   <div class="invalid-feedback" *ngIf="control.errors?.['required']">Please enter a valid {{label}}</div>
-  <div class="invalid-feedback" *ngIf="control.errors?.['minlength']">Please enter a {{label}} at least {{control.errors?.['minlength']}} characters</div>
-  <div class="invalid-feedback" *ngIf="control.errors?.['maxlength']">Please enter a {{label}} at most {{control.errors?.['maxlength']}} characters</div>
+  <div class="invalid-feedback" *ngIf="control.errors?.['minlength']">Please enter a {{label}} at least {{control.errors?.['minlength'].requiredLength}} characters</div>
+  <div class="invalid-feedback" *ngIf="control.errors?.['maxlength']">Please enter a {{label}} at most {{control.value.errors?.['maxlength'].requiredLength}} characters</div>
   <div class="invalid-feedback" *ngIf="control.errors?.['notMatching']">Passwords do not match</div>
 </div>
