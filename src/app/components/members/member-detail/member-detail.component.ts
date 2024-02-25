@@ -24,16 +24,32 @@ import {Message} from "../../../models/message";
   standalone: true
 })
 export class MemberDetailComponent implements OnInit{
-  @ViewChild('memberTabs') memberTabs?: TabsetComponent;
-  member: MemberModel | undefined;
+  @ViewChild('memberTabs', {static: true}) memberTabs?: TabsetComponent;
+  member!: MemberModel;
   images: GalleryItem[] =[];
   activeTab?: TabDirective;
   messages: Message[] = [];
 
-  constructor(private memberService: MembersService, private route: ActivatedRoute, private messageService: MessageService) { }
+  constructor(private route: ActivatedRoute, private messageService: MessageService) { }
 
   ngOnInit() {
-    this.loadMember();
+   this.route.data.subscribe({
+     next: data => this.member = data['member']
+   });
+
+    this.route.queryParams.subscribe({
+      next: params => {
+        params['tab'] && this.selectTab(params['tab']);
+      }
+    });
+
+    this.getImages();
+  }
+
+  selectTab(heading: string){
+    if(this.memberTabs){
+      this.memberTabs.tabs.find(t => t.heading === heading)!.active = true;
+    }
   }
 
   onTabActivated(data: TabDirective){
@@ -51,17 +67,17 @@ export class MemberDetailComponent implements OnInit{
     }
   }
 
-  loadMember(){
-    const username = this.route.snapshot.paramMap.get('username');
-    if(!username) return;
-
-    this.memberService.getMember(username).subscribe({
-      next: member => {
-        this.member = member;
-        this.getImages();
-      }
-    });
-  }
+  // loadMember(){
+  //   const username = this.route.snapshot.paramMap.get('username');
+  //   if(!username) return;
+  //
+  //   this.memberService.getMember(username).subscribe({
+  //     next: member => {
+  //       this.member = member;
+  //       this.getImages();
+  //     }
+  //   });
+  // }
 
   getImages(){
     if(!this.member) return;
