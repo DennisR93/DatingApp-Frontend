@@ -50,4 +50,7 @@ export class AccountService {
     this.currentUserSource.next(user);
   }
 
+  getDecodedToke(token: string){
+    return JSON.parse(atob(token.split('.')[1]));
+  }
 }
