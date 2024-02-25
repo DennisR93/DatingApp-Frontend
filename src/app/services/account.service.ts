@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, map} from "rxjs";
+import {BehaviorSubject, catchError, map} from "rxjs";
 import {UserModel} from "../models/usermodel";
 import {environment} from "../../environments/environment.development";
 
@@ -14,15 +14,18 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  register(model:any){
+  register(model: any) {
     return this.http.post<UserModel>(this.baseUrl + 'account/register', model).pipe(
-      map(user => {
-        if(user){
+      catchError((error: any) => {
+        throw error;
+      }),
+      map((user: UserModel) => {
+        if (user) {
           this.setCurrentUser(user);
         }
         return user;
       })
-    )
+    );
   }
 
   login(model:UserModel){
