@@ -5,8 +5,9 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import {delay, finalize, Observable} from 'rxjs';
+import {delay, finalize, identity, Observable} from 'rxjs';
 import {LoaderService} from "../services/loader.service";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
@@ -17,7 +18,7 @@ export class LoaderInterceptor implements HttpInterceptor {
     this.loaderService.loading();
 
     return next.handle(request).pipe(
-      delay(1000),
+      (environment.production ? identity : delay(1000)),
       finalize(() => {
         this.loaderService.idle()
       })
