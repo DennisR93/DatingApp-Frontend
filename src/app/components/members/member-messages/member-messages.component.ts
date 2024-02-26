@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, ViewChild} from '@angular/core';
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {TimeagoModule} from "ngx-timeago";
 import {MessageService} from "../../../services/message.service";
@@ -15,7 +15,8 @@ import {FormsModule, NgForm} from "@angular/forms";
     FormsModule,
     AsyncPipe
   ],
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MemberMessagesComponent{
   @ViewChild('messageForm') messageForm?: NgForm;
