@@ -5,7 +5,7 @@ import {getPaginatedResult, getPaginationHeaders} from "./paginationHelper";
 import {Message} from "../models/message";
 import {HubConnection, HubConnectionBuilder} from "@microsoft/signalr";
 import {UserModel} from "../models/usermodel";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, take} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,14 @@ export class MessageService {
     this.hubConnection.start().catch(error => console.log(error));
     this.hubConnection.on("ReceiveMessageThread", messages => {
       this.messageThreadSource.next(messages);
+    });
+
+    this.hubConnection.on("NewMessage", message => {
+      this.messageThread$.pipe(take(1)).subscribe({
+        next: messages => {
+          this.messageThreadSource.next([...messages, message])
+        }
+      })
     })
   }
 
@@ -46,8 +54,10 @@ export class MessageService {
     return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + username);
   }
 
-  sendMessage(username: string, content: string){
-    return this.http.post<Message>(this.baseUrl + 'messages', {recipientUsername: username, content});
+  async sendMessage(username: string, content: string){
+    // return this.http.post<Message>(this.baseUrl + 'messages', {recipientUsername: username, content});
+    return this.hubConnection?.invoke('SendMessage', {recipientUsername: username, content}).catch(error => console.log(error));
+
   }
 
   deleteMessage(id: number){
