@@ -2,13 +2,14 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MemberModel} from "../../../models/membermodel";
 import {MembersService} from "../../../services/members.service";
 import {ActivatedRoute} from "@angular/router";
-import {DatePipe, NgIf} from "@angular/common";
+import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
 import {SharedModule} from "../../../modules/shared.module";
 import {GalleryItem, GalleryModule, ImageItem} from "ng-gallery";
 import {MemberMessagesComponent} from "../member-messages/member-messages.component";
 import {TabDirective, TabsetComponent} from "ngx-bootstrap/tabs";
 import {MessageService} from "../../../services/message.service";
 import {Message} from "../../../models/message";
+import {PresenceService} from "../../../services/presence.service";
 
 @Component({
   selector: 'app-member-detail',
@@ -19,7 +20,8 @@ import {Message} from "../../../models/message";
     NgIf,
     SharedModule,
     GalleryModule,
-    MemberMessagesComponent
+    MemberMessagesComponent,
+    AsyncPipe
   ],
   standalone: true
 })
@@ -30,7 +32,7 @@ export class MemberDetailComponent implements OnInit{
   activeTab?: TabDirective;
   messages: Message[] = [];
 
-  constructor(private route: ActivatedRoute, private messageService: MessageService) { }
+  constructor(private route: ActivatedRoute, private messageService: MessageService, protected presenceService: PresenceService) { }
 
   ngOnInit() {
    this.route.data.subscribe({
