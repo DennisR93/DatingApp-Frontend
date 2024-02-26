@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../services/account.service";
-import {Observable, of} from "rxjs";
-import {UserModel} from "../../models/usermodel";
 import {Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-header',
@@ -12,34 +9,23 @@ import {ToastrService} from "ngx-toastr";
 })
 export class HeaderComponent implements OnInit{
 model: any = {};
-/*loggedIn:boolean = false;*/
-  // currentUser$ :Observable<UserModel | null> = of(null);
 
-constructor(protected accountService: AccountService, private router: Router, private toastr: ToastrService) {}
+constructor(protected accountService: AccountService, private router: Router) {}
 
   ngOnInit() {
-/*  this.getCurrentUser();*/
-    // this.currentUser$ = this.accountService.currentUser$;
   }
 
   login(){
     this.accountService.login(this.model).subscribe({
-      next: () => this.router.navigateByUrl('/members')// this.loggedIn = true;
-    })
+      next: () => {
+        this.router.navigateByUrl('/members');
+        this.model = {};
+      }
+    });
   }
 
   logout(){
   this.accountService.logout();
   this.router.navigateByUrl('/');
-  // this.loggedIn = false;
   }
-
-  /*getCurrentUser(){
-  this.accountService.currentUser$.subscribe({
-    next: user => {
-      this.loggedIn = !!user;
-    },
-    error: error => console.log(error)
-  })
-  }*/
 }
